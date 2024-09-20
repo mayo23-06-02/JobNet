@@ -40,9 +40,8 @@ export default function RegisterHome() {
         { value: 'other', label: 'Other' },
     ];
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (password === verifyPassword) {
+    function handleSubmit() {
+        if (password.length > 0 && password === verifyPassword) {
             let res = fetch("/api/auth", {
                 method: "POST",
                 body: JSON.stringify({
@@ -64,26 +63,38 @@ export default function RegisterHome() {
         }
     }
     return (
-        <div className=' items-center h-screen w-full'>
+        <div className=' items-center lg:h-screen w-full'>
             <div className='space-y-8'>
-                <div className='flex-col space-y-4 w-full items-center justify-center flex'>
-                    <Logo />
-                    <div className=' flex  pl-8  space-x-4 bg-gray-200 rounded-xl items-center border '>
+                <div className='hidden lg:inline'>
+                    <div className='flex-col space-y-8 w-full items-center justify-center flex'>
+                        <Logo />
+                        <div className=' flex   px-6 space-x-4 py-2 rounded-xl  justify-center border w-full '>
                         <p className='font-bold'>Are you a Service Provider?</p>
-                        <button className=' scale-110 bg-black text-sm text-white py-2 px-4 rounded-xl  font-bold'>
+                        <button className=' scale-110  text-sm text-blue-600 underline font-bold'>
                             Register Here
                         </button>
                     </div>
+                    </div>
                 </div>
-                <div className='space-y-8 flex items-center flex-col border border-black/10 shadow rounded-2xl py-8 px-6'>
+                <div className='space-y-8 flex items-center flex-col lg:border border-black/10 lg:shadow lg:rounded-2xl rounded-3xl py-8 px-6'>
                     <div className='w-full flex-col items-center justify-center flex space-y-2'>
                         <p className='font-bold text-2xl'>Register</p>
                         <p className='text-gray-600'>Please enter your details to register</p>
                     </div>
+                    <div className=' lg:hidden'>
+                        <div className='flex-col text-sm space-y- w-full items-center justify-center flex'>
+                            <div className=' flex  flex-col px-6 space-y-1 py-2 rounded-xl items-center border w-full '>
+                                <p className='font-bold'>Are you a Service Provider?</p>
+                                <button className=' scale-110  text-sm text-blue-600 underline font-bold'>
+                                    Register Here
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div className='flex flex-col space-y-8 w-full'>
                         <div className='flex flex-col space-y-6 w-full'>
                             {nextSection ?
-                                <div className='space-y-2'>
+                                <div className='space-y-4'>
                                     <Input label={"First Name"} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                                     <Input label={"Last Name"} value={lastName} onChange={(e) => setLastName(e.target.value)} />
                                     <Input label={"Physical Address"} value={location} onChange={(e) => setLocation(e.target.value)} />
@@ -128,7 +139,7 @@ export default function RegisterHome() {
                                 : <Button label={'Register'} onClick={handleSubmit} />}
                         </div>
                     </div>
-                    <div>
+                    <div className='text-sm lg:text-base'>
                         <Link href={'../../login'}>
                             <p className='text-gray-400'>Already have an account? <span className='font-bold hover:underline text-black cursor-pointer'>Login</span></p>
                         </Link>

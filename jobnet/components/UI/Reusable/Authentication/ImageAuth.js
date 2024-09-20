@@ -13,7 +13,6 @@ export default function ImageAuth() {
                     <div className='flex space-y-2 flex-col items-center'>
                         <p className='text-xl font-bold'>Please sign in to your Jobnet account
                         </p>
-                        <p className='text-center'>JobNet exists-to connect you with reliable, vetted professionals  for all your home  service needs, instantly and effortlessly.</p>
                     </div>
                 </div>
             </span>

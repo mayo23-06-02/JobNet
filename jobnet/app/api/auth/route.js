@@ -7,8 +7,18 @@ export async function POST(req) {
   const client = await clientPromise;
   const db = client.db("JobNet");
   const body = await req.json();
-  const candidateData = await db.collection("Users").insertOne(body);
-  return NextResponse.json(candidateData);
+
+  // Check if the user already exists
+  const existingUser = await db.collection("ServiceWorkers").findOne({ email: body.email });
+
+  if (existingUser) {
+    // User already exists
+    return NextResponse.json({ message: "User exists" }, { status: 200 });
+  } else {
+    // Insert new user
+    const candidateData = await db.collection("ServiceWorkers").insertOne(body);
+    return NextResponse.json(candidateData);
+  }
 }
 
 export async function GET() {
@@ -16,7 +26,7 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db('JobNet');
     const userData = await db
-      .collection('Users')
+      .collection('ServiceWorkers')
       .find()
       .sort({})
       .toArray();

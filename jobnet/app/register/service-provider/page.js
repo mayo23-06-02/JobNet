@@ -10,16 +10,20 @@ export default function ServiceProviders() {
 
     return (
         <main className="">
-            <div className="max-w-[1280px] mx-auto ">
-                <div className="grid  grid-cols-5 gap-12">
-                    <div className="col-span-2 flex items-center justify-center pt-12 ">
-                        <RegisterServiceProviders />
-                    </div>
-                    <div className="col-span-3 flex justify-center">
+        <div className="max-w-[1280px] mx-auto ">
+            <div className="lg:grid  grid-cols-5 gap-12">
+                <div className="lg:hidden">
+                </div>
+                <div className="col-span-2 lg:translate-y-0 flex items-center justify-center pt-12 ">
+                    <RegisterServiceProviders />
+                </div>
+                <div className="col-span-3 flex justify-center">
+                    <div className="hidden lg:inline">
                         <ImageServiceProvider />
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
     );
 }
